@@ -3,34 +3,22 @@ import React, { useEffect } from 'react';
 import { Box, Button, TextField, Typography } from '@mui/material/';
 
 type AddScoreFormProps = {
-    scores: number[];
-    setScores: React.Dispatch<React.SetStateAction<number[]>>;
+    scoresHistory: number[];
+    setScoresHistory: React.Dispatch<React.SetStateAction<number[]>>;
 };
 
-const AddScoreForm = ({ scores, setScores }: AddScoreFormProps) => {
+const AddScoreForm = ({ scoresHistory, setScoresHistory }: AddScoreFormProps) => {
     // Regex pattern to check if the input only contains numbers
     const regexPattern = /^[0-9]+$/;
 
     const [newScore, setNewScore] = React.useState<string>('');
     const [helperText, setHelperText] = React.useState<string>('');
     const [isAddButtonDisabled, setIsAddButtonDisabled] = React.useState<boolean>(false);
-    // const [dateCleared, setDateCleared] = React.useState<boolean>(false);
     const [formHasErrors, setFormHasErrors] = React.useState<boolean>(false);
 
     useEffect(() => {
         doFormValidation(newScore);
     }, [newScore]);
-
-    // useEffect(() => {
-    //     if (dateCleared) {
-    //         const timeout = setTimeout(() => {
-    //             setDateCleared(false);
-    //         }, 1500);
-
-    //         return () => clearTimeout(timeout);
-    //     }
-    //     return () => {};
-    // }, [dateCleared]);
 
     const doFormValidation = (newScore: string) => {
         if (!newScore.length) {
@@ -66,7 +54,7 @@ const AddScoreForm = ({ scores, setScores }: AddScoreFormProps) => {
         e.preventDefault();
         console.log(111);
 
-        setScores([...scores, parseInt(newScore)]);
+        setScoresHistory([...scoresHistory, parseInt(newScore)]);
 
         setNewScore('');
     };
@@ -86,30 +74,6 @@ const AddScoreForm = ({ scores, setScores }: AddScoreFormProps) => {
                 gap={4}
                 mb={8}
             >
-                {/* <div>
-                    <LocalizationProvider dateAdapter={AdapterDayjs}>
-                        <Box
-                            component="div"
-                            sx={{
-                                width: '100%',
-                                height: '100%',
-                                display: 'flex',
-                                justifyContent: 'center',
-                                position: 'relative',
-                            }}
-                        >
-                            <DatePicker
-                                label="Period"
-                                views={['month', 'year']}
-                                sx={{ width: 260 }}
-                                slotProps={{
-                                    field: { clearable: true, onClear: () => setDateCleared(true) },
-                                }}
-                            />
-                        </Box>
-                    </LocalizationProvider>
-                </div> */}
-
                 <TextField
                     required
                     id="newScore"

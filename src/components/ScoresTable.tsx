@@ -11,10 +11,10 @@ import {
 } from '@mui/material/';
 
 type ScoresTableProps = {
-    scores: number[];
+    scoresHistory: number[];
 };
 
-const ScoresTable = ({ scores }: ScoresTableProps) => {
+const ScoresTable = ({ scoresHistory }: ScoresTableProps) => {
     return (
         <Box component="section" width="600px" m="auto" mb={8}>
             <Typography variant="h3" component="h2" align="center" mb={4}>
@@ -22,7 +22,7 @@ const ScoresTable = ({ scores }: ScoresTableProps) => {
             </Typography>
 
             {(() => {
-                if (scores.length) {
+                if (scoresHistory.length) {
                     return (
                         <TableContainer component={Paper}>
                             <Table aria-label="score table">
@@ -32,7 +32,7 @@ const ScoresTable = ({ scores }: ScoresTableProps) => {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {scores.map((score) => (
+                                    {scoresHistory.map((score) => (
                                         <TableRow
                                             key={score}
                                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -45,7 +45,11 @@ const ScoresTable = ({ scores }: ScoresTableProps) => {
                         </TableContainer>
                     );
                 } else {
-                    return <p align="center">No scores</p>;
+                    return (
+                        <Typography component="p" align="center" mb={4}>
+                            No Scores
+                        </Typography>
+                    );
                 }
             })()}
         </Box>
