@@ -16,8 +16,8 @@ type ScoresTableProps = {
 
 const ScoresTable = ({ scoresHistory }: ScoresTableProps) => {
     return (
-        <Box component="section" width="600px" m="auto" mb={8}>
-            <Typography variant="h3" component="h2" align="center" mb={4}>
+        <Box component="section" mb={8} p={4} sx={{ border: 1, borderRadius: '16px' }}>
+            <Typography variant="h4" component="h2" mb={4} color={'#303f9f'}>
                 Previous Scores
             </Typography>
 
@@ -28,15 +28,17 @@ const ScoresTable = ({ scoresHistory }: ScoresTableProps) => {
                             <Table aria-label="score table">
                                 <TableHead>
                                     <TableRow>
+                                        <TableCell>Attempt</TableCell>
                                         <TableCell>Score</TableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {scoresHistory.map((score) => (
+                                    {scoresHistory.map((score, index) => (
                                         <TableRow
                                             key={score}
                                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                         >
+                                            <TableCell scope="row">{index + 1}</TableCell>
                                             <TableCell scope="row">{score}</TableCell>
                                         </TableRow>
                                     ))}
@@ -46,7 +48,7 @@ const ScoresTable = ({ scoresHistory }: ScoresTableProps) => {
                     );
                 } else {
                     return (
-                        <Typography component="p" align="center" mb={4}>
+                        <Typography variant="h5" component="p" mb={4}>
                             No Scores
                         </Typography>
                     );

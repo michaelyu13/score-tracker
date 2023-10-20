@@ -1,16 +1,14 @@
 import { Line } from 'react-chartjs-2';
 
-import { Typography } from '@mui/material/';
+import { Box, Typography } from '@mui/material/';
 
 type ScoresGraphProps = {
     scoresHistory: number[];
 };
 
 const ScoresGraph = ({ scoresHistory }: ScoresGraphProps) => {
-    const scoresHistoryIndexes = scoresHistory.map((_, index) => index);
-
     const chartData = {
-        labels: scoresHistoryIndexes,
+        labels: scoresHistory.map((_, index) => index),
         datasets: [
             {
                 label: 'Scores ',
@@ -22,38 +20,40 @@ const ScoresGraph = ({ scoresHistory }: ScoresGraphProps) => {
         ],
     };
     return (
-        <div className="chart-container">
-            <Typography variant="h3" component="h2" align="center" mb={4}>
-                Scores History
-            </Typography>
+        <>
+            <Box component="section" mb={8} p={4} sx={{ border: 1, borderRadius: '16px' }}>
+                <Typography variant="h4" component="h2" mb={4} color={'#303f9f'}>
+                    Scores History
+                </Typography>
 
-            {(() => {
-                if (scoresHistory.length) {
-                    return (
-                        <Line
-                            data={chartData}
-                            options={{
-                                plugins: {
-                                    title: {
-                                        display: false,
-                                        text: 'Scores Over Attempts',
+                {(() => {
+                    if (scoresHistory.length) {
+                        return (
+                            <Line
+                                data={chartData}
+                                options={{
+                                    plugins: {
+                                        title: {
+                                            display: false,
+                                            text: 'Scores Over Attempts',
+                                        },
+                                        legend: {
+                                            display: false,
+                                        },
                                     },
-                                    legend: {
-                                        display: false,
-                                    },
-                                },
-                            }}
-                        />
-                    );
-                } else {
-                    return (
-                        <Typography component="p" align="center" mb={4}>
-                            No Scores History
-                        </Typography>
-                    );
-                }
-            })()}
-        </div>
+                                }}
+                            />
+                        );
+                    } else {
+                        return (
+                            <Typography variant="h5" component="p" mb={4}>
+                                No Scores History
+                            </Typography>
+                        );
+                    }
+                })()}
+            </Box>
+        </>
     );
 };
 

@@ -52,7 +52,6 @@ const AddScoreForm = ({ scoresHistory, setScoresHistory }: AddScoreFormProps) =>
 
     const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log(111);
 
         setScoresHistory([...scoresHistory, parseInt(newScore)]);
 
@@ -61,33 +60,36 @@ const AddScoreForm = ({ scoresHistory, setScoresHistory }: AddScoreFormProps) =>
 
     return (
         <>
-            <Typography variant="h3" component="h2" align="center" mb={4}>
-                Add Score
-            </Typography>
-
-            <Box
-                component="form"
-                onSubmit={handleOnSubmit}
-                display="flex"
-                justifyContent="center"
-                alignItems="baseline"
-                gap={4}
-                mb={8}
-            >
-                <TextField
-                    required
-                    id="newScore"
-                    label="New Score"
-                    value={newScore}
-                    error={formHasErrors}
-                    helperText={helperText}
-                    onChange={handleOnChange}
-                    variant="outlined"
-                />
-
-                <Button type="submit" variant="contained" size="large" disabled={isAddButtonDisabled}>
+            <Box component="section" mb={8} p={4} sx={{ border: 1, borderRadius: '16px' }}>
+                <Typography variant="h4" component="h2" mb={4} color={'#303f9f'}>
                     Add Score
-                </Button>
+                </Typography>
+
+                <Box
+                    component="form"
+                    onSubmit={handleOnSubmit}
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="baseline"
+                    gap={4}
+                    mb={8}
+                >
+                    <TextField
+                        required
+                        autoComplete="off"
+                        id="newScore"
+                        label="New Score"
+                        value={newScore}
+                        error={formHasErrors}
+                        helperText={helperText}
+                        onChange={handleOnChange}
+                        variant="outlined"
+                    />
+
+                    <Button type="submit" variant="contained" size="large" disabled={isAddButtonDisabled}>
+                        Add Score
+                    </Button>
+                </Box>
             </Box>
         </>
     );

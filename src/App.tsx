@@ -1,10 +1,11 @@
 import { useState } from 'react';
 
 import AddScoreForm from './components/AddScoreForm';
+import Header from './components/Header';
 import ScoresGraph from './components/ScoresGraph';
 import ScoresTable from './components/ScoresTable';
 
-import { Box, Container, CssBaseline, Typography } from '@mui/material/';
+import { Box, Container, CssBaseline } from '@mui/material/';
 import { indigo } from '@mui/material/colors';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
@@ -29,16 +30,16 @@ const App: React.FC = () => {
             <CssBaseline />
             <ThemeProvider theme={theme}>
                 <Container sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-                    <Box component="header" my={4}>
-                        <Typography variant="h2" component="h1" align="center">
-                            Score Tracker
-                        </Typography>
-                    </Box>
+                    <Header />
 
-                    <Box component="main">
-                        <AddScoreForm scoresHistory={scoresHistory} setScoresHistory={setScoresHistory} />
-                        <ScoresTable scoresHistory={scoresHistory} />
-                        <ScoresGraph scoresHistory={scoresHistory} />
+                    <Box component="main" display="flex" gap={12}>
+                        <Box component="section" mb={8}>
+                            <AddScoreForm scoresHistory={scoresHistory} setScoresHistory={setScoresHistory} />
+                            <ScoresTable scoresHistory={scoresHistory} />
+                        </Box>
+                        <Box component="section" sx={{ flexGrow: 1 }}>
+                            <ScoresGraph scoresHistory={scoresHistory} />
+                        </Box>
                     </Box>
                 </Container>
             </ThemeProvider>
