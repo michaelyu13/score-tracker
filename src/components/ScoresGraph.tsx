@@ -8,10 +8,10 @@ type ScoresGraphProps = {
 
 const ScoresGraph = ({ scoresHistory }: ScoresGraphProps) => {
     const chartData = {
-        labels: scoresHistory.map((_, index) => index),
+        labels: scoresHistory.map((index) => index + 1),
         datasets: [
             {
-                label: 'Scores ',
+                label: 'Score ',
                 data: scoresHistory.map((scoreHistory) => scoreHistory),
                 backgroundColor: 'red',
                 borderColor: '#303f9f',
@@ -19,11 +19,12 @@ const ScoresGraph = ({ scoresHistory }: ScoresGraphProps) => {
             },
         ],
     };
+
     return (
         <>
-            <Box component="section" mb={8} p={4} sx={{ border: 1, borderRadius: '16px' }}>
-                <Typography variant="h4" component="h2" mb={4} color={'#303f9f'}>
-                    Scores History
+            <Box component="section" mb={2} p={2} height={500} sx={{ border: 1, borderRadius: '16px' }}>
+                <Typography variant="h4" component="h2" mb={2} color={'#303f9f'}>
+                    Chart
                 </Typography>
 
                 {(() => {
@@ -34,8 +35,10 @@ const ScoresGraph = ({ scoresHistory }: ScoresGraphProps) => {
                                 options={{
                                     plugins: {
                                         title: {
-                                            display: false,
-                                            text: 'Scores Over Attempts',
+                                            display: true,
+                                            text: 'Attempts',
+                                            position: 'bottom',
+                                            color: '#303f9f',
                                         },
                                         legend: {
                                             display: false,
@@ -46,8 +49,8 @@ const ScoresGraph = ({ scoresHistory }: ScoresGraphProps) => {
                         );
                     } else {
                         return (
-                            <Typography variant="h5" component="p" mb={4}>
-                                No Scores History
+                            <Typography variant="h6" component="p" mb={2}>
+                                Unavailable at the moment.
                             </Typography>
                         );
                     }

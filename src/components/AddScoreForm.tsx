@@ -60,20 +60,12 @@ const AddScoreForm = ({ scoresHistory, setScoresHistory }: AddScoreFormProps) =>
 
     return (
         <>
-            <Box component="section" mb={8} p={4} sx={{ border: 1, borderRadius: '16px' }}>
-                <Typography variant="h4" component="h2" mb={4} color={'#303f9f'}>
+            <Box component="section" mb={2} p={2} sx={{ border: 1, borderRadius: '16px' }}>
+                <Typography variant="h4" component="h2" mb={2} color={'#303f9f'}>
                     Add Score
                 </Typography>
 
-                <Box
-                    component="form"
-                    onSubmit={handleOnSubmit}
-                    display="flex"
-                    justifyContent="center"
-                    alignItems="baseline"
-                    gap={4}
-                    mb={8}
-                >
+                <Box component="form" onSubmit={handleOnSubmit} display="flex" alignItems="baseline" gap={4}>
                     <TextField
                         required
                         autoComplete="off"

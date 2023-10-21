@@ -16,8 +16,8 @@ type ScoresTableProps = {
 
 const ScoresTable = ({ scoresHistory }: ScoresTableProps) => {
     return (
-        <Box component="section" mb={8} p={4} sx={{ border: 1, borderRadius: '16px' }}>
-            <Typography variant="h4" component="h2" mb={4} color={'#303f9f'}>
+        <Box component="section" mb={2} p={2} height={662} sx={{ border: 1, borderRadius: '16px', overflow: 'auto' }}>
+            <Typography variant="h4" component="h2" mb={2} color={'#303f9f'}>
                 Previous Scores
             </Typography>
 
@@ -33,23 +33,26 @@ const ScoresTable = ({ scoresHistory }: ScoresTableProps) => {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {scoresHistory.map((score, index) => (
-                                        <TableRow
-                                            key={score}
-                                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                        >
-                                            <TableCell scope="row">{index + 1}</TableCell>
-                                            <TableCell scope="row">{score}</TableCell>
-                                        </TableRow>
-                                    ))}
+                                    {scoresHistory
+                                        .slice()
+                                        .reverse()
+                                        .map((score, index) => (
+                                            <TableRow
+                                                key={index}
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell scope="row">{scoresHistory.length - index}</TableCell>
+                                                <TableCell scope="row">{score}</TableCell>
+                                            </TableRow>
+                                        ))}
                                 </TableBody>
                             </Table>
                         </TableContainer>
                     );
                 } else {
                     return (
-                        <Typography variant="h5" component="p" mb={4}>
-                            No Scores
+                        <Typography variant="h6" component="p" mb={2}>
+                            No Scores Currently.
                         </Typography>
                     );
                 }

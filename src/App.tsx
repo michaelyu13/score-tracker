@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import AddScoreForm from './components/AddScoreForm';
+import Footer from './components/Footer';
 import Header from './components/Header';
 import ScoresGraph from './components/ScoresGraph';
 import ScoresTable from './components/ScoresTable';
@@ -29,19 +30,22 @@ const App: React.FC = () => {
         <>
             <CssBaseline />
             <ThemeProvider theme={theme}>
-                <Container sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-                    <Header />
+                <Box component="section" sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+                    <Container sx={{ flexGrow: 1, marginBottom: 4 }}>
+                        <Header />
 
-                    <Box component="main" display="flex" gap={12}>
-                        <Box component="section" mb={8}>
-                            <AddScoreForm scoresHistory={scoresHistory} setScoresHistory={setScoresHistory} />
-                            <ScoresTable scoresHistory={scoresHistory} />
+                        <Box component="main" display="flex" gap={4}>
+                            <Box component="section" flexGrow={1}>
+                                <AddScoreForm scoresHistory={scoresHistory} setScoresHistory={setScoresHistory} />
+                                <ScoresGraph scoresHistory={scoresHistory} />
+                            </Box>
+                            <Box component="section">
+                                <ScoresTable scoresHistory={scoresHistory} />
+                            </Box>
                         </Box>
-                        <Box component="section" sx={{ flexGrow: 1 }}>
-                            <ScoresGraph scoresHistory={scoresHistory} />
-                        </Box>
-                    </Box>
-                </Container>
+                    </Container>
+                    <Footer setScoresHistory={setScoresHistory} />
+                </Box>
             </ThemeProvider>
         </>
     );
