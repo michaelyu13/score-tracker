@@ -14,6 +14,7 @@ const theme = createTheme({
     palette: {
         primary: {
             main: indigo[700],
+            light: indigo[50],
         },
     },
 });

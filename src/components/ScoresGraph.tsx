@@ -32,9 +32,10 @@ const ScoresGraph = ({ scoresHistory }: ScoresGraphProps) => {
                                             {
                                                 label: 'Score ',
                                                 data: scoresHistory.map((scoreHistory) => scoreHistory),
-                                                backgroundColor: theme.palette.error.main,
+                                                backgroundColor: theme.palette.primary.light,
                                                 borderColor: theme.palette.primary.main,
                                                 borderWidth: 2,
+                                                fill: true,
                                             },
                                         ],
                                     }}
