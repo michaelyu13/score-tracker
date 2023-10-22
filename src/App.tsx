@@ -1,7 +1,7 @@
 import { Box, Container, Grid } from '@mui/material/';
 import { indigo } from '@mui/material/colors';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import AddScore from './components/AddScore';
 import ChartSection from './components/ChartSection';
 import Footer from './components/Footer';
@@ -12,6 +12,8 @@ import StatAverageScore from './components/Stats/StatAverageScore';
 import StatHighestScore from './components/Stats/StatHighestScore';
 import StatLowestScore from './components/Stats/StatLowestScore';
 
+const LOCAL_STORAGE_KEY = 'scoresTracker';
+
 const theme = createTheme({
     palette: {
         primary: {
@@ -21,8 +23,26 @@ const theme = createTheme({
     },
 });
 
-const App: React.FC = () => {
+const App = () => {
     const [scoresHistory, setScoresHistory] = useState<number[]>([]);
+
+    const sideEffectRanOnceAfterInitialRender = useRef(false);
+
+    useEffect(() => {
+        if (sideEffectRanOnceAfterInitialRender.current === false) {
+            const scoresJSON = localStorage.getItem(LOCAL_STORAGE_KEY);
+
+            if (scoresJSON != null) {
+                setScoresHistory(JSON.parse(scoresJSON));
+            }
+
+            sideEffectRanOnceAfterInitialRender.current = true;
+        }
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(scoresHistory));
+    }, [scoresHistory]);
 
     return (
         <>

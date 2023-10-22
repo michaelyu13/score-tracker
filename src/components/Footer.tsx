@@ -43,6 +43,7 @@ const Footer = ({ scoresHistory, setScoresHistory }: FooterProps) => {
                 flexDirection={{ xs: 'column', sm: 'row' }}
                 justifyContent="center"
                 gap={{ xs: 2, sm: 4 }}
+                mb={2}
             >
                 <Button
                     type="submit"
@@ -65,6 +66,10 @@ const Footer = ({ scoresHistory, setScoresHistory }: FooterProps) => {
                     Delete All Scores
                 </Button>
             </Box>
+
+            <Typography variant="h6" component="p" mb={2} align="center" color="primary.main">
+                Note: Scores are stored in Local Storage.
+            </Typography>
         </Box>
     );
 };
