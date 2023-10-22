@@ -3,6 +3,7 @@ import { useTheme } from '@mui/material/styles';
 import { CategoryScale } from 'chart.js';
 import Chart from 'chart.js/auto';
 import { Line } from 'react-chartjs-2';
+import Unavailable from './Unavailable';
 
 Chart.register(CategoryScale);
 
@@ -65,11 +66,7 @@ const ScoresGraph = ({ scoresHistory }: ScoresGraphProps) => {
                             </Box>
                         );
                     } else {
-                        return (
-                            <Typography variant="h6" component="p" mb={2}>
-                                Unavailable at the moment.
-                            </Typography>
-                        );
+                        return <Unavailable />;
                     }
                 })()}
             </Box>

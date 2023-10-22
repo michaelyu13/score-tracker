@@ -10,6 +10,7 @@ import {
     TableRow,
     Typography,
 } from '@mui/material/';
+import Unavailable from './Unavailable';
 
 type ScoresTableProps = {
     scoresHistory: number[];
@@ -69,11 +70,7 @@ const ScoresTable = ({ scoresHistory }: ScoresTableProps) => {
                         </>
                     );
                 } else {
-                    return (
-                        <Typography variant="h6" component="p" mb={2}>
-                            None for now.
-                        </Typography>
-                    );
+                    return <Unavailable />;
                 }
             })()}
         </Box>
