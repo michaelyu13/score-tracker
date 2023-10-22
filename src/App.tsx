@@ -5,6 +5,7 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import ScoresGraph from './components/ScoresGraph';
 import ScoresTable from './components/ScoresTable';
+import Stats from './components/Stats';
 
 import { Box, Container } from '@mui/material/';
 import { indigo } from '@mui/material/colors';
@@ -35,14 +36,10 @@ const App: React.FC = () => {
                             flexDirection={{ xs: 'column', sm: 'row' }}
                             gap={{ xs: 2, sm: 4 }}
                         >
-                            <Box
-                                component="section"
-                                display="flex"
-                                flexDirection="column"
-                                flexGrow={1}
-                                gap={{ xs: 2, sm: 4 }}
-                            >
+                            <Box display="flex" flexDirection="column" flexGrow={1} gap={{ xs: 2, sm: 4 }}>
                                 <AddScoreForm scoresHistory={scoresHistory} setScoresHistory={setScoresHistory} />
+                                <Stats scoresHistory={scoresHistory} />
+
                                 <ScoresGraph scoresHistory={scoresHistory} />
                             </Box>
 
