@@ -1,10 +1,13 @@
+import { AddBox, Delete } from '@mui/icons-material';
 import { Box, Button, Typography } from '@mui/material/';
+import { grey } from '@mui/material/colors';
 
 type FooterProps = {
+    scoresHistory: number[];
     setScoresHistory: React.Dispatch<React.SetStateAction<number[]>>;
 };
 
-const Footer = ({ setScoresHistory }: FooterProps) => {
+const Footer = ({ scoresHistory, setScoresHistory }: FooterProps) => {
     const randomSampleData: number[] = [];
 
     const generateRandomData = () => {
@@ -29,17 +32,36 @@ const Footer = ({ setScoresHistory }: FooterProps) => {
         setScoresHistory([]);
     };
     return (
-        <Box component="footer" p={4} bgcolor={'#eee'}>
-            <Typography variant="h5" component="h1" align="center" mb={2} color={'#303f9f'}>
+        <Box component="footer" p={2} bgcolor={grey[200]}>
+            <Typography variant="h5" component="h1" align="center" mb={2} color="primary.main">
                 For Testing Purposes
             </Typography>
 
-            <Box component="section" display="flex" justifyContent="center" gap={4}>
-                <Button type="submit" variant="contained" size="large" onClick={handleAddSampleReadings}>
+            <Box
+                component="section"
+                display="flex"
+                flexDirection={{ xs: 'column', sm: 'row' }}
+                justifyContent="center"
+                gap={{ xs: 2, sm: 4 }}
+            >
+                <Button
+                    type="submit"
+                    variant="contained"
+                    startIcon={<AddBox />}
+                    size="large"
+                    onClick={handleAddSampleReadings}
+                >
                     Add Sample Scores
                 </Button>
 
-                <Button type="submit" variant="contained" size="large" onClick={handleDeleteAllReadings}>
+                <Button
+                    type="submit"
+                    disabled={scoresHistory.length ? false : true}
+                    variant="contained"
+                    startIcon={<Delete />}
+                    size="large"
+                    onClick={handleDeleteAllReadings}
+                >
                     Delete All Scores
                 </Button>
             </Box>

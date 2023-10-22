@@ -60,12 +60,19 @@ const AddScoreForm = ({ scoresHistory, setScoresHistory }: AddScoreFormProps) =>
 
     return (
         <>
-            <Box component="section" mb={2} p={2} sx={{ border: 1, borderRadius: '16px' }}>
-                <Typography variant="h4" component="h2" mb={2} color={'#303f9f'}>
+            <Box component="section" p={2} sx={{ border: 1, borderRadius: 4 }}>
+                <Typography variant="h5" component="h2" mb={2} color="primary.main">
                     Add Score
                 </Typography>
 
-                <Box component="form" onSubmit={handleOnSubmit} display="flex" alignItems="baseline" gap={4}>
+                <Box
+                    component="form"
+                    onSubmit={handleOnSubmit}
+                    display="flex"
+                    flexDirection={{ xs: 'column', sm: 'row' }}
+                    gap={2}
+                    width={{ md: '50%' }}
+                >
                     <TextField
                         required
                         autoComplete="off"
@@ -78,7 +85,7 @@ const AddScoreForm = ({ scoresHistory, setScoresHistory }: AddScoreFormProps) =>
                         variant="outlined"
                     />
 
-                    <Button type="submit" variant="contained" size="large" disabled={isAddButtonDisabled}>
+                    <Button type="submit" variant="contained" disabled={isAddButtonDisabled} fullWidth>
                         Add Score
                     </Button>
                 </Box>

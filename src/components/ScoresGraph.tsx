@@ -1,51 +1,67 @@
+import { CategoryScale } from 'chart.js';
+import Chart from 'chart.js/auto';
 import { Line } from 'react-chartjs-2';
 
 import { Box, Typography } from '@mui/material/';
+import { useTheme } from '@mui/material/styles';
+
+Chart.register(CategoryScale);
 
 type ScoresGraphProps = {
     scoresHistory: number[];
 };
 
 const ScoresGraph = ({ scoresHistory }: ScoresGraphProps) => {
-    const chartData = {
-        labels: scoresHistory.map((index) => index + 1),
-        datasets: [
-            {
-                label: 'Score ',
-                data: scoresHistory.map((scoreHistory) => scoreHistory),
-                backgroundColor: 'red',
-                borderColor: '#303f9f',
-                borderWidth: 2,
-            },
-        ],
-    };
+    const theme = useTheme();
 
     return (
         <>
-            <Box component="section" mb={2} p={2} height={500} sx={{ border: 1, borderRadius: '16px' }}>
-                <Typography variant="h4" component="h2" mb={2} color={'#303f9f'}>
+            <Box component="section" height={{ sm: 380 }} p={2} sx={{ border: 1, borderRadius: 4 }}>
+                <Typography variant="h5" component="h2" mb={2} color="primary.main">
                     Chart
                 </Typography>
 
                 {(() => {
                     if (scoresHistory.length) {
                         return (
-                            <Line
-                                data={chartData}
-                                options={{
-                                    plugins: {
-                                        title: {
-                                            display: true,
-                                            text: 'Attempts',
-                                            position: 'bottom',
-                                            color: '#303f9f',
+                            <Box height={'300px'}>
+                                <Line
+                                    data={{
+                                        labels: scoresHistory.map((_, index) => index + 1),
+                                        datasets: [
+                                            {
+                                                label: 'Score ',
+                                                data: scoresHistory.map((scoreHistory) => scoreHistory),
+                                                backgroundColor: theme.palette.error.main,
+                                                borderColor: theme.palette.primary.main,
+                                                borderWidth: 2,
+                                            },
+                                        ],
+                                    }}
+                                    options={{
+                                        responsive: true,
+                                        maintainAspectRatio: false,
+                                        plugins: {
+                                            title: {
+                                                display: true,
+                                                text: 'Attempts',
+                                                position: 'bottom',
+                                                font: {
+                                                    size: 14,
+                                                },
+                                            },
+                                            legend: {
+                                                display: true,
+                                                position: 'top',
+                                                labels: {
+                                                    usePointStyle: true,
+                                                    pointStyle: 'rectRot',
+                                                },
+                                            },
                                         },
-                                        legend: {
-                                            display: false,
-                                        },
-                                    },
-                                }}
-                            />
+                                    }}
+                                />
+                            </Box>
                         );
                     } else {
                         return (

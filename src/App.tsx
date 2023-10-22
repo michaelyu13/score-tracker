@@ -6,14 +6,9 @@ import Header from './components/Header';
 import ScoresGraph from './components/ScoresGraph';
 import ScoresTable from './components/ScoresTable';
 
-import { Box, Container, CssBaseline } from '@mui/material/';
+import { Box, Container } from '@mui/material/';
 import { indigo } from '@mui/material/colors';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-
-import { CategoryScale } from 'chart.js';
-import Chart from 'chart.js/auto';
-
-Chart.register(CategoryScale);
 
 const theme = createTheme({
     palette: {
@@ -28,23 +23,34 @@ const App: React.FC = () => {
 
     return (
         <>
-            <CssBaseline />
             <ThemeProvider theme={theme}>
                 <Box component="section" sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-                    <Container sx={{ flexGrow: 1, marginBottom: 4 }}>
+                    <Container sx={{ flexGrow: 1, marginBottom: 2 }}>
                         <Header />
 
-                        <Box component="main" display="flex" gap={4}>
-                            <Box component="section" flexGrow={1}>
+                        <Box
+                            component="main"
+                            display="flex"
+                            flexDirection={{ xs: 'column', sm: 'row' }}
+                            gap={{ xs: 2, sm: 4 }}
+                        >
+                            <Box
+                                component="section"
+                                display="flex"
+                                flexDirection="column"
+                                flexGrow={1}
+                                gap={{ xs: 2, sm: 4 }}
+                            >
                                 <AddScoreForm scoresHistory={scoresHistory} setScoresHistory={setScoresHistory} />
                                 <ScoresGraph scoresHistory={scoresHistory} />
                             </Box>
+
                             <Box component="section">
                                 <ScoresTable scoresHistory={scoresHistory} />
                             </Box>
                         </Box>
                     </Container>
-                    <Footer setScoresHistory={setScoresHistory} />
+                    <Footer scoresHistory={scoresHistory} setScoresHistory={setScoresHistory} />
                 </Box>
             </ThemeProvider>
         </>
