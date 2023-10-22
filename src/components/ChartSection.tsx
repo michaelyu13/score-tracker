@@ -1,9 +1,8 @@
+import { Box, Typography } from '@mui/material/';
+import { useTheme } from '@mui/material/styles';
 import { CategoryScale } from 'chart.js';
 import Chart from 'chart.js/auto';
 import { Line } from 'react-chartjs-2';
-
-import { Box, Typography } from '@mui/material/';
-import { useTheme } from '@mui/material/styles';
 
 Chart.register(CategoryScale);
 
@@ -53,7 +52,7 @@ const ScoresGraph = ({ scoresHistory }: ScoresGraphProps) => {
 
     return (
         <>
-            <Box component="section" height={{ sm: 380 }} p={2} sx={{ border: 1, borderRadius: 4 }}>
+            <Box component="section" height={{ sm: 550 }} p={2} sx={{ border: 1, borderRadius: 4 }}>
                 <Typography variant="h5" component="h2" mb={2} color="primary.main">
                     Chart
                 </Typography>
