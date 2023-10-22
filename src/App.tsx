@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
-import AddScoreForm from './components/AddScoreForm';
+import AddScore from './components/AddScore';
+import ChartSection from './components/ChartSection';
 import Footer from './components/Footer';
 import Header from './components/Header';
-import ScoresGraph from './components/ScoresGraph';
-import ScoresTable from './components/ScoresTable';
+import PreviousScores from './components/PreviousScores';
 import Stats from './components/Stats';
 
 import { Box, Container } from '@mui/material/';
@@ -37,14 +37,14 @@ const App: React.FC = () => {
                             gap={{ xs: 2, sm: 4 }}
                         >
                             <Box display="flex" flexDirection="column" flexGrow={1} gap={{ xs: 2, sm: 4 }}>
-                                <AddScoreForm scoresHistory={scoresHistory} setScoresHistory={setScoresHistory} />
+                                <AddScore scoresHistory={scoresHistory} setScoresHistory={setScoresHistory} />
                                 <Stats scoresHistory={scoresHistory} />
 
-                                <ScoresGraph scoresHistory={scoresHistory} />
+                                <ChartSection scoresHistory={scoresHistory} />
                             </Box>
 
                             <Box component="section">
-                                <ScoresTable scoresHistory={scoresHistory} />
+                                <PreviousScores scoresHistory={scoresHistory} />
                             </Box>
                         </Box>
                     </Container>
