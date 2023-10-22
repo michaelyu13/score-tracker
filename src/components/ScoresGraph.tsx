@@ -14,6 +14,43 @@ type ScoresGraphProps = {
 const ScoresGraph = ({ scoresHistory }: ScoresGraphProps) => {
     const theme = useTheme();
 
+    const chartData = {
+        labels: scoresHistory.map((_, index) => index + 1),
+        datasets: [
+            {
+                label: 'Score ',
+                data: scoresHistory.map((scoreHistory) => scoreHistory),
+                backgroundColor: theme.palette.primary.light,
+                borderColor: theme.palette.primary.main,
+                borderWidth: 2,
+                fill: true,
+            },
+        ],
+    };
+
+    const chartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            title: {
+                display: true,
+                text: 'Attempts',
+                position: 'bottom' as const,
+                font: {
+                    size: 14,
+                },
+            },
+            legend: {
+                display: true,
+                position: 'top' as const,
+                labels: {
+                    usePointStyle: true,
+                    pointStyle: 'rectRot',
+                },
+            },
+        },
+    };
+
     return (
         <>
             <Box component="section" height={{ sm: 380 }} p={2} sx={{ border: 1, borderRadius: 4 }}>
@@ -25,43 +62,7 @@ const ScoresGraph = ({ scoresHistory }: ScoresGraphProps) => {
                     if (scoresHistory.length) {
                         return (
                             <Box height={'300px'}>
-                                <Line
-                                    data={{
-                                        labels: scoresHistory.map((_, index) => index + 1),
-                                        datasets: [
-                                            {
-                                                label: 'Score ',
-                                                data: scoresHistory.map((scoreHistory) => scoreHistory),
-                                                backgroundColor: theme.palette.primary.light,
-                                                borderColor: theme.palette.primary.main,
-                                                borderWidth: 2,
-                                                fill: true,
-                                            },
-                                        ],
-                                    }}
-                                    options={{
-                                        responsive: true,
-                                        maintainAspectRatio: false,
-                                        plugins: {
-                                            title: {
-                                                display: true,
-                                                text: 'Attempts',
-                                                position: 'bottom',
-                                                font: {
-                                                    size: 14,
-                                                },
-                                            },
-                                            legend: {
-                                                display: true,
-                                                position: 'top',
-                                                labels: {
-                                                    usePointStyle: true,
-                                                    pointStyle: 'rectRot',
-                                                },
-                                            },
-                                        },
-                                    }}
-                                />
+                                <Line data={chartData} options={chartOptions} />
                             </Box>
                         );
                     } else {
