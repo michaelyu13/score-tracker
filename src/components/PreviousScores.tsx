@@ -54,7 +54,7 @@ const ScoresTable = ({ scoresHistory }: ScoresTableProps) => {
                 sx={{ border: 1, borderColor: grey[300] }}
             >
                 {(() => {
-                    if (scoresHistory.length) {
+                    if (scoresHistory.length > 0) {
                         return (
                             <>
                                 <TableContainer component={Paper} sx={{ maxHeight: { md: 399 } }}>

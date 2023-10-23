@@ -12,7 +12,7 @@ const Stats = ({ scoresHistory }: ScoresGraphProps) => {
                 Lowest Score
             </Typography>
             <Typography variant="h2" component="p" color="common.white">
-                {scoresHistory.length ? Math.min(...scoresHistory) : '-'}
+                {scoresHistory.length > 0 ? Math.min(...scoresHistory) : '-'}
             </Typography>
         </Box>
     );

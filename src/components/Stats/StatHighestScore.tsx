@@ -12,7 +12,7 @@ const Stats = ({ scoresHistory }: ScoresGraphProps) => {
                 Highest Score
             </Typography>
             <Typography variant="h2" component="p" color="common.white">
-                {scoresHistory.length ? Math.max(...scoresHistory) : '-'}
+                {scoresHistory.length > 0 ? Math.max(...scoresHistory) : '-'}
             </Typography>
         </Box>
     );

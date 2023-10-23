@@ -11,7 +11,7 @@ const Stats = ({ scoresHistory }: ScoresGraphProps) => {
                 Attempts
             </Typography>
             <Typography variant="h2" component="p" color="common.white">
-                {scoresHistory.length ? scoresHistory.length : '-'}
+                {scoresHistory.length > 0 ? scoresHistory.length : '-'}
             </Typography>
         </Box>
     );

@@ -88,9 +88,9 @@ const ScoresGraph = ({ scoresHistory }: ScoresGraphProps) => {
                 </FormControl>
                 <Box height={'400px'}>
                     {(() => {
-                        if (scoresHistory.length && chartType === 'bar') {
+                        if (scoresHistory.length > 0 && chartType === 'bar') {
                             return <Bar data={chartData} options={chartOptions} />;
-                        } else if (scoresHistory.length && chartType === 'line') {
+                        } else if (scoresHistory.length > 0 && chartType === 'line') {
                             return <Line data={chartData} options={chartOptions} />;
                         } else {
                             return <Unavailable />;

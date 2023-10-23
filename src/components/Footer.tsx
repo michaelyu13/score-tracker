@@ -57,7 +57,7 @@ const Footer = ({ scoresHistory, setScoresHistory }: FooterProps) => {
 
                 <Button
                     type="submit"
-                    disabled={scoresHistory.length ? false : true}
+                    disabled={scoresHistory.length > 0 ? false : true}
                     variant="contained"
                     startIcon={<Delete />}
                     size="large"

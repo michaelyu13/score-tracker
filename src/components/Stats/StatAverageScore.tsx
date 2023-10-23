@@ -19,7 +19,7 @@ const Stats = ({ scoresHistory }: ScoresGraphProps) => {
                 Average Score
             </Typography>
             <Typography variant="h2" component="p" color="common.white">
-                {scoresHistory.length ? getAverageScore(scoresHistory) : '-'}
+                {scoresHistory.length > 0 ? getAverageScore(scoresHistory) : '-'}
             </Typography>
         </Box>
     );
