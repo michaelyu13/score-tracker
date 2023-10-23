@@ -13,7 +13,7 @@ const Footer = ({ scoresHistory, setScoresHistory }: FooterProps) => {
     const generateRandomData = () => {
         const numberOfData = 20;
         const minValue = 100;
-        const maxValue = 1000;
+        const maxValue = 999;
 
         for (let i = 0; i < numberOfData; i++) {
             const randomData = Math.floor(Math.random() * (maxValue - minValue + 1)) + minValue;
@@ -32,7 +32,7 @@ const Footer = ({ scoresHistory, setScoresHistory }: FooterProps) => {
         setScoresHistory([]);
     };
     return (
-        <Box component="footer" p={2} bgcolor={grey[200]}>
+        <Box component="footer" pt={2} px={2} bgcolor={grey[300]}>
             <Typography variant="h5" component="h1" align="center" mb={2} color="primary.main">
                 For Testing Purposes
             </Typography>

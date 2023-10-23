@@ -1,5 +1,5 @@
 import { Box, Container, Grid } from '@mui/material/';
-import { indigo } from '@mui/material/colors';
+import { grey, indigo } from '@mui/material/colors';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { useEffect, useRef, useState } from 'react';
 import AddScore from './components/AddScore';
@@ -45,41 +45,49 @@ const App = () => {
     }, [scoresHistory]);
 
     return (
-        <>
-            <ThemeProvider theme={theme}>
-                <Box component="section" sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-                    <Container sx={{ flexGrow: 1, marginBottom: 2 }}>
-                        <Header />
+        <ThemeProvider theme={theme}>
+            <Box
+                component="section"
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    minHeight: '100vh',
+                    backgroundColor: grey[100],
+                }}
+            >
+                <Container sx={{ flexGrow: 1, marginBottom: 2 }}>
+                    <Header />
 
-                        <Grid container spacing={3}>
-                            <Grid item xs={12}>
-                                <AddScore scoresHistory={scoresHistory} setScoresHistory={setScoresHistory} />
-                            </Grid>
-                            <Grid item xs={12} sm={3}>
-                                <StatAttempts scoresHistory={scoresHistory} />
-                            </Grid>
-                            <Grid item xs={12} sm={3}>
-                                <StatLowestScore scoresHistory={scoresHistory} />
-                            </Grid>
-                            <Grid item xs={12} sm={3}>
-                                <StatAverageScore scoresHistory={scoresHistory} />
-                            </Grid>
-                            <Grid item xs={12} sm={3}>
-                                <StatHighestScore scoresHistory={scoresHistory} />
-                            </Grid>
-                            <Grid item xs={12} md={8}>
-                                <ChartSection scoresHistory={scoresHistory} />
-                            </Grid>
-                            <Grid item xs={12} md={4}>
-                                <PreviousScores scoresHistory={scoresHistory} />
-                            </Grid>
+                    <Grid container spacing={2}>
+                        <Grid item xs={6} sm={3}>
+                            <StatAttempts scoresHistory={scoresHistory} />
                         </Grid>
-                    </Container>
+                        <Grid item xs={6} sm={3}>
+                            <StatLowestScore scoresHistory={scoresHistory} />
+                        </Grid>
+                        <Grid item xs={6} sm={3}>
+                            <StatAverageScore scoresHistory={scoresHistory} />
+                        </Grid>
+                        <Grid item xs={6} sm={3}>
+                            <StatHighestScore scoresHistory={scoresHistory} />
+                        </Grid>
 
-                    <Footer scoresHistory={scoresHistory} setScoresHistory={setScoresHistory} />
-                </Box>
-            </ThemeProvider>
-        </>
+                        <Grid item xs={12}>
+                            <AddScore scoresHistory={scoresHistory} setScoresHistory={setScoresHistory} />
+                        </Grid>
+
+                        <Grid item xs={12} md={9}>
+                            <ChartSection scoresHistory={scoresHistory} />
+                        </Grid>
+                        <Grid item xs={12} sm={12} md={3}>
+                            <PreviousScores scoresHistory={scoresHistory} />
+                        </Grid>
+                    </Grid>
+                </Container>
+
+                <Footer scoresHistory={scoresHistory} setScoresHistory={setScoresHistory} />
+            </Box>
+        </ThemeProvider>
     );
 };
 

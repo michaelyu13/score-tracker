@@ -1,4 +1,5 @@
 import { Box, Button, TextField, Typography } from '@mui/material/';
+import { grey } from '@mui/material/colors';
 import React, { useEffect } from 'react';
 
 type AddScoreFormProps = {
@@ -59,11 +60,11 @@ const AddScoreForm = ({ scoresHistory, setScoresHistory }: AddScoreFormProps) =>
 
     return (
         <>
-            <Box component="section" p={2} sx={{ border: 1, borderRadius: 4 }}>
-                <Typography variant="h5" component="h2" mb={2} color="primary.main">
-                    Add Score
-                </Typography>
+            <Typography variant="h5" component="h2" mb={2} color="primary.main">
+                Add Score
+            </Typography>
 
+            <Box component="section" p={2} sx={{ border: 1, borderColor: grey[300] }} bgcolor="common.white">
                 <Box
                     component="form"
                     onSubmit={handleOnSubmit}
@@ -82,9 +83,11 @@ const AddScoreForm = ({ scoresHistory, setScoresHistory }: AddScoreFormProps) =>
                         helperText={helperText}
                         onChange={handleOnChange}
                         variant="outlined"
+                        inputProps={{ maxLength: 3 }}
+                        placeholder="3 Digits Max"
                     />
 
-                    <Button type="submit" variant="contained" disabled={isAddButtonDisabled} fullWidth>
+                    <Button type="submit" variant="contained" size="large" disabled={isAddButtonDisabled}>
                         Add Score
                     </Button>
                 </Box>

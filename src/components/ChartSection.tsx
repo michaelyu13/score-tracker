@@ -1,4 +1,5 @@
 import { Box, Typography } from '@mui/material/';
+import { grey } from '@mui/material/colors';
 import { useTheme } from '@mui/material/styles';
 import { CategoryScale } from 'chart.js';
 import Chart from 'chart.js/auto';
@@ -53,15 +54,21 @@ const ScoresGraph = ({ scoresHistory }: ScoresGraphProps) => {
 
     return (
         <>
-            <Box component="section" height={{ sm: 550 }} p={2} sx={{ border: 1, borderRadius: 4 }}>
-                <Typography variant="h5" component="h2" mb={2} color="primary.main">
-                    Chart
-                </Typography>
+            <Typography variant="h5" component="h2" mb={2} color="primary.main">
+                Chart
+            </Typography>
 
+            <Box
+                component="section"
+                height={{ md: 480 }}
+                p={2}
+                bgcolor="common.white"
+                sx={{ border: 1, borderColor: grey[300] }}
+            >
                 {(() => {
                     if (scoresHistory.length) {
                         return (
-                            <Box height={'300px'}>
+                            <Box height={'456px'}>
                                 <Line data={chartData} options={chartOptions} />
                             </Box>
                         );
