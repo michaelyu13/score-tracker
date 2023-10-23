@@ -22,7 +22,7 @@ type ScoresTableProps = {
 const ScoresTable = ({ scoresHistory }: ScoresTableProps) => {
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
-            backgroundColor: theme.palette.common.black,
+            backgroundColor: theme.palette.grey[500],
             color: theme.palette.common.white,
         },
         [`&.${tableCellClasses.body}`]: {
@@ -85,7 +85,7 @@ const ScoresTable = ({ scoresHistory }: ScoresTableProps) => {
                                 </TableContainer>
 
                                 {(() => {
-                                    if (scoresHistory.length > 10) {
+                                    if (scoresHistory.length > 11) {
                                         return (
                                             <Box
                                                 mt={2}
