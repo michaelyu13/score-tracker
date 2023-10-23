@@ -17,7 +17,7 @@ type ScoresGraphProps = {
 const ScoresGraph = ({ scoresHistory }: ScoresGraphProps) => {
     const theme = useTheme();
 
-    const [chartType, setChartType] = React.useState('line');
+    const [chartType, setChartType] = React.useState('bar');
 
     const handleOnChange = (e: SelectChangeEvent) => {
         return setChartType(e.target.value);
