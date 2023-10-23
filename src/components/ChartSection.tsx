@@ -1,9 +1,11 @@
-import { Box, Typography } from '@mui/material/';
+import { Box, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material/';
+import { SelectChangeEvent } from '@mui/material/Select';
 import { grey } from '@mui/material/colors';
 import { useTheme } from '@mui/material/styles';
 import { CategoryScale } from 'chart.js';
 import Chart from 'chart.js/auto';
-import { Line } from 'react-chartjs-2';
+import React from 'react';
+import { Bar, Line } from 'react-chartjs-2';
 import Unavailable from './Unavailable';
 
 Chart.register(CategoryScale);
@@ -14,6 +16,12 @@ type ScoresGraphProps = {
 
 const ScoresGraph = ({ scoresHistory }: ScoresGraphProps) => {
     const theme = useTheme();
+
+    const [chartType, setChartType] = React.useState('line');
+
+    const handleOnChange = (e: SelectChangeEvent) => {
+        return setChartType(e.target.value);
+    };
 
     const chartData = {
         labels: scoresHistory.map((_, index) => index + 1),
@@ -65,17 +73,31 @@ const ScoresGraph = ({ scoresHistory }: ScoresGraphProps) => {
                 bgcolor="common.white"
                 sx={{ border: 1, borderColor: grey[300] }}
             >
-                {(() => {
-                    if (scoresHistory.length) {
-                        return (
-                            <Box height={'456px'}>
-                                <Line data={chartData} options={chartOptions} />
-                            </Box>
-                        );
-                    } else {
-                        return <Unavailable />;
-                    }
-                })()}
+                <FormControl size="small" sx={{ m: 1, minWidth: 100, float: 'right' }}>
+                    <InputLabel id="chartType">Chart Type</InputLabel>
+                    <Select
+                        labelId="chartType"
+                        id="chartTypeId"
+                        value={chartType}
+                        label="chartType"
+                        onChange={handleOnChange}
+                    >
+                        <MenuItem value="bar">Bar</MenuItem>
+                        <MenuItem value="line">Line</MenuItem>
+                    </Select>
+                </FormControl>
+                <Box height={'400px'}>
+                    {(() => {
+                        if (scoresHistory.length && chartType === 'bar') {
+                            return <Bar data={chartData} options={chartOptions} />;
+                        } else if (scoresHistory.length && chartType === 'line') {
+                            return <Line data={chartData} options={chartOptions} />;
+                        } else {
+                            return <Unavailable />;
+                        }
+                    })()}
+                </Box>
+                ;
             </Box>
         </>
     );
