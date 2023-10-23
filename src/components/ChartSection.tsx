@@ -86,16 +86,16 @@ const ScoresGraph = ({ scoresHistory }: ScoresGraphProps) => {
                         <MenuItem value="line">Line</MenuItem>
                     </Select>
                 </FormControl>
-                <Box height={'400px'}>
-                    {(() => {
-                        if (scoresHistory.length > 0 && chartType === 'bar') {
-                            return <Bar data={chartData} options={chartOptions} />;
-                        } else if (scoresHistory.length > 0 && chartType === 'line') {
-                            return <Line data={chartData} options={chartOptions} />;
-                        } else {
-                            return <Unavailable />;
-                        }
-                    })()}
+                <Box height="400px">
+                    {scoresHistory.length > 0 ? (
+                        chartType === 'bar' ? (
+                            <Bar data={chartData} options={chartOptions} />
+                        ) : (
+                            <Line data={chartData} options={chartOptions} />
+                        )
+                    ) : (
+                        <Unavailable />
+                    )}
                 </Box>
                 ;
             </Box>
