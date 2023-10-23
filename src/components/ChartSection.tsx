@@ -97,7 +97,6 @@ const ScoresGraph = ({ scoresHistory }: ScoresGraphProps) => {
                         <Unavailable />
                     )}
                 </Box>
-                ;
             </Box>
         </>
     );
