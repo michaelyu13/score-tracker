@@ -8,7 +8,10 @@ type AddScoreFormProps = {
 };
 
 const AddScoreForm = ({ scoresHistory, setScoresHistory }: AddScoreFormProps) => {
-    // Regex pattern to check if the input only contains numbers
+    // Regex pattern to check the input:
+    // - Only has numbers.
+    // - Does not begin with zero.
+    // - Does not have a decimal point.
     const regexPattern = /^[0-9]+$/;
 
     const [newScore, setNewScore] = React.useState<string>('');
