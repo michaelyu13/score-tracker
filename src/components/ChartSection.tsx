@@ -68,35 +68,38 @@ const ScoresGraph = ({ scoresHistory }: ScoresGraphProps) => {
 
             <Box
                 component="section"
-                height={{ md: 480 }}
+                height={{ sm: 454 }}
                 p={2}
                 bgcolor="common.white"
                 sx={{ border: 1, borderColor: grey[300] }}
             >
-                <FormControl size="small" sx={{ m: 1, minWidth: 100, float: 'right' }}>
-                    <InputLabel id="chartType">Chart Type</InputLabel>
-                    <Select
-                        labelId="chartType"
-                        id="chartTypeId"
-                        value={chartType}
-                        label="chartType"
-                        onChange={handleOnChange}
-                    >
-                        <MenuItem value="bar">Bar</MenuItem>
-                        <MenuItem value="line">Line</MenuItem>
-                    </Select>
-                </FormControl>
-                <Box height="400px">
-                    {scoresHistory.length > 0 ? (
-                        chartType === 'bar' ? (
+                {scoresHistory.length > 0 && (
+                    <FormControl size="small" sx={{ float: 'right', minWidth: 100 }}>
+                        <InputLabel id="chartType">Chart Type</InputLabel>
+                        <Select
+                            labelId="chartType"
+                            id="chartTypeId"
+                            value={chartType}
+                            label="chartType"
+                            onChange={handleOnChange}
+                        >
+                            <MenuItem value="bar">Bar</MenuItem>
+                            <MenuItem value="line">Line</MenuItem>
+                        </Select>
+                    </FormControl>
+                )}
+
+                {scoresHistory.length > 0 ? (
+                    <Box height="390px" sx={{ clear: 'both' }}>
+                        {chartType === 'bar' ? (
                             <Bar data={chartData} options={chartOptions} />
                         ) : (
                             <Line data={chartData} options={chartOptions} />
-                        )
-                    ) : (
-                        <Unavailable />
-                    )}
-                </Box>
+                        )}
+                    </Box>
+                ) : (
+                    <Unavailable />
+                )}
             </Box>
         </>
     );

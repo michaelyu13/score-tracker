@@ -47,7 +47,7 @@ const ScoresTable = ({ scoresHistory }: ScoresTableProps) => {
 
             <Box
                 component="section"
-                height={{ md: 480 }}
+                height={{ md: 454 }}
                 mb={2}
                 p={2}
                 bgcolor="common.white"
@@ -57,7 +57,7 @@ const ScoresTable = ({ scoresHistory }: ScoresTableProps) => {
                     if (scoresHistory.length > 0) {
                         return (
                             <>
-                                <TableContainer component={Paper} sx={{ maxHeight: { md: 399 } }}>
+                                <TableContainer component={Paper} sx={{ maxHeight: { md: 366 } }}>
                                     <Table stickyHeader size="small" aria-label="previous scores">
                                         <TableHead>
                                             <TableRow>
@@ -85,10 +85,10 @@ const ScoresTable = ({ scoresHistory }: ScoresTableProps) => {
                                 </TableContainer>
 
                                 {(() => {
-                                    if (scoresHistory.length > 11) {
+                                    if (scoresHistory.length > 10) {
                                         return (
                                             <Box
-                                                mt={2}
+                                                mt={2.5}
                                                 display={{ xs: 'none', md: 'flex' }}
                                                 flexDirection="column"
                                                 alignItems="center"
