@@ -15,11 +15,11 @@ import { grey } from '@mui/material/colors';
 import { styled } from '@mui/material/styles';
 import Unavailable from './Unavailable';
 
-type ScoresTableProps = {
+type PreviousScoresProps = {
     scoresHistory: number[];
 };
 
-const ScoresTable = ({ scoresHistory }: ScoresTableProps) => {
+const PreviousScores = ({ scoresHistory }: PreviousScoresProps) => {
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
             backgroundColor: theme.palette.grey[500],
@@ -102,4 +102,4 @@ const ScoresTable = ({ scoresHistory }: ScoresTableProps) => {
     );
 };
 
-export default ScoresTable;
+export default PreviousScores;

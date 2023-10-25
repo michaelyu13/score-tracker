@@ -2,12 +2,12 @@ import { Box, Button, TextField, Typography } from '@mui/material/';
 import { grey } from '@mui/material/colors';
 import React, { useEffect } from 'react';
 
-type AddScoreFormProps = {
+type AddScoreProps = {
     scoresHistory: number[];
     setScoresHistory: React.Dispatch<React.SetStateAction<number[]>>;
 };
 
-const AddScoreForm = ({ scoresHistory, setScoresHistory }: AddScoreFormProps) => {
+const AddScore = ({ scoresHistory, setScoresHistory }: AddScoreProps) => {
     // Regex pattern to check the input:
     // - Only has numbers.
     // - Does not begin with zero.
@@ -99,4 +99,4 @@ const AddScoreForm = ({ scoresHistory, setScoresHistory }: AddScoreFormProps) =>
     );
 };
 
-export default AddScoreForm;
+export default AddScore;

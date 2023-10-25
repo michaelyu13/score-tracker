@@ -10,11 +10,11 @@ import Unavailable from './Unavailable';
 
 Chart.register(CategoryScale);
 
-type ScoresGraphProps = {
+type ChartSectionProps = {
     scoresHistory: number[];
 };
 
-const ScoresGraph = ({ scoresHistory }: ScoresGraphProps) => {
+const ChartSection = ({ scoresHistory }: ChartSectionProps) => {
     const theme = useTheme();
 
     const [chartType, setChartType] = React.useState('bar');
@@ -105,4 +105,4 @@ const ScoresGraph = ({ scoresHistory }: ScoresGraphProps) => {
     );
 };
 
-export default ScoresGraph;
+export default ChartSection;
