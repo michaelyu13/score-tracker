@@ -31,14 +31,14 @@ const AddScore = ({ scoresHistory, setScoresHistory }: AddScoreProps) => {
             return;
         }
 
-        if (newScore && newScore.charAt(0) === '0') {
+        if (newScore.charAt(0) === '0') {
             setIsAddButtonDisabled(true);
             setFormHasErrors(true);
             setHelperText('Number cannot begin with 0.');
             return;
         }
 
-        if (newScore && !regexPattern.test(newScore)) {
+        if (!regexPattern.test(newScore)) {
             setIsAddButtonDisabled(true);
             setFormHasErrors(true);
             setHelperText('Must be a number.');
