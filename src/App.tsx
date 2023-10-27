@@ -29,10 +29,10 @@ const App = () => {
     const sideEffectRanOnceAfterInitialRender = useRef(false);
 
     useEffect(() => {
-        if (sideEffectRanOnceAfterInitialRender.current === false) {
+        if (!sideEffectRanOnceAfterInitialRender.current) {
             const scoresJSON = localStorage.getItem(LOCAL_STORAGE_KEY);
 
-            if (scoresJSON != null) {
+            if (scoresJSON) {
                 setScoresHistory(JSON.parse(scoresJSON));
             }
 
